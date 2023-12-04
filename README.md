@@ -7,36 +7,67 @@ After the blending results improved slightly, but to get better results more dat
 We used the dreambooth training procedure to train inpaint SD model on waymo dataset and then used it to create a scene comprising of front and front right scene in each image. There was again a problem of a seam discontinuity and the inpaint model was changing the whole image ever so slightly so the problem was a bug in the inpaint model itself which we resolved using another mask on the non outpainted area and overlay with the original image which replaces the changed area. The results weren’t visually pleasing and we decided to move to university server/cluster after this as we only used first 200 tfrecords altogether with mostly used by maskrcnn training, 200 only used for training inpaint model and some more couple thousand images to create the outpainted dataset.
 
 2) Scripts on University Server/Cluster - Here we’ll outline each script we created and what it does and 	are listed in chronological order from starting to finish:
+   
 •	processingtfrecords_FRONT_FRONTRIGHT.py : we create dataset from waymo open dataset first 200 tfrecords for training purpose of stable diffusion inpaint model
+
 •	blender.py : stitching and blending the newly created front and front right images from first 200 tfrecords
+
 •	client_secret_95146630750-sclh21du0rji3814t4hig6ieuulagq4i.apps.googleusercontent.com.json : json file created after authenticating and creating a web service for app on localhost on google cloud dev for uploading and downloading on files directly to and from server and google drive.
+
 •	driveuploader.py : uploading the stitched dataset for checking the quality of blending to google drive
+
 •	settings.yaml : yaml for authorization settings for the google drive account using google cloud backend to work with pydrive2 library
+
 •	credentials.json : json file with local authorization settings for pydrive2 and google drive
+
 •	drivedownloader.py : downloading training dataset selected from the stitched data with good stitching without seams and borders from google drive
+
 •	accelerate launch ./diffs/examples/research_projects/dreambooth_inpaint/train_dreambooth_inpaint.py  --pretrained_model_name_or_path="stabilityai/stable-diffusion-2-inpainting"   --instance_data_dir="./training_imgs/"  --output_dir="./chkpt_outpaint3/" --instance_prompt="photo of a waymodrivscene driving scene"  --resolution=512  --train_batch_size=4  --gradient_accumulation_steps=1 --learning_rate=5e-6  --lr_scheduler="constant" --lr_warmup_steps=0 --max_train_steps=3000 : training inpaint model on first 200 tfrecord images that were selected after stitching
+
 •	testdreamboothmodels.py : testing the newly trained inpaint model for outpainting waymo style images
+
 •	processingtfrecords_FRONT_FRONTRIGHT_testingimages.py : we create dataset from waymo open dataset between 200:300 indexed tfrecords for testing purpose of stable diffusion inpaint model
+
 •	blender_outpaint_testing.py : creating blended stitched dataset from the testing dataset
+
 •	driveuploader500.py : uploading results to google drive for output results from training the inpaint model for 500 epochs
+
 •	driveuploader1000.py : uploading results to google drive for output results from training the inpaint model for 1000 epochs
+
 •	driveuploader1500.py : uploading results to google drive for output results from training the inpaint model for 1500 epochs
+
 •	driveuploader2000.py : uploading results to google drive for output results from training the inpaint model for 2000 epochs
+
 •	driveuploader2500.py : uploading results to google drive for output results from training the inpaint model for 2500 epochs
+
 •	driveuploader3000.py : uploading results to google drive for output results from training the inpaint model for 3000 epochs
+
 •	testbasesd.py : testing base inpaint sd model without any fine tuning on outpainting task but results weren’t satisfactory
+
 •	imagecaptioner.py : we added manual prompts by loading from a text file with base inpaint sd model to see changes in results but still results weren’t visually appealing but a slight improvement
+
 •	driveuploader2.py : uploading results from using text prompts from file to the google drive
+
 •	clipcaptioner.py : we used clip model for generating prompts from input images for both front and front right images and generate these prompts automatically and save it as a image, prompt pair for both front and front right images separately
+
 •	metadatcreator.py : merges the front and front right csv files with adding front or front right as keyword to each promt depending on the image is from front or front right csv
+
 •	filecopierfr.py : copying image files from front right images to a training dataset directory
+
 •	filecopierf.py : copying image files from front images to a training dataset directory and merging the front and front right images to create a merged dataset for training
+
 •	driveuploaderckpt.py : we quickly trained a base sd model with waymo dataset and then uploading this fine tuned base sd model as we wanted to try the next idea of merging this base sd model with the inapint model which we do online using google colab and automatic1111 model merging
+
 •	drivedownloaderckpt.py : downloading the merged ckpt for merged inpaint sd model from google drive that we saved from automatic1111 checkpoint merging  procedure
+
 •	testmerged.py : we tested the merged model for outpainting but got the worst results as outpainted region was just random noise
+
 •	driveuploadermerged.py : uploading the results for merged model to google drive
+
 •	maskrcnndreambooth.py : tried SAM (segment anything model) in conjunction with maskrcnn model to get crispier and visually appealing masks by keeping only those good clean masks from sam model which are intersecting the maskrcnn model’s masks by more than 90% pixel area wise ensuring we only keep those masks of pedestrians and vehicles which maskrcnn model was trained to recognise 
+
 •	foldermaker.py : creating empty folders for uploading selected masks images and masks in the google drive
+
 •	uploadersammaskrcnn.py : uploading masked images and masks from maskrcnndreambooth.py output to empty folders in the google drive
 •	testbasesdfinetuned.py : outpainting using base sd model and poor man’s outpainting technique as merged model failed but results weren’t good enough
 •	driveuploaderfinetuned.py : uploading images to the google drive for base sd poor man’s output results
