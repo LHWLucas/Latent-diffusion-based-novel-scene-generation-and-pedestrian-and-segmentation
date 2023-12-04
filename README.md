@@ -69,17 +69,29 @@ We used the dreambooth training procedure to train inpaint SD model on waymo dat
 •	foldermaker.py : creating empty folders for uploading selected masks images and masks in the google drive
 
 •	uploadersammaskrcnn.py : uploading masked images and masks from maskrcnndreambooth.py output to empty folders in the google drive
+
 •	testbasesdfinetuned.py : outpainting using base sd model and poor man’s outpainting technique as merged model failed but results weren’t good enough
+
 •	driveuploaderfinetuned.py : uploading images to the google drive for base sd poor man’s output results
-•	accelerate launch ./diffs/examples/text_to_image/train_text_to_image.py --pretrained_model_name_or_path="stabilityai/stable-diffusion-2" --train_data_dir="./trainingdataset/" --use_ema --resolution=512 --center_crop --random_flip  --train_batch_size=1 --gradient_accumulation_steps=4 --gradient_checkpointing --max_train_steps=15000 --learning_rate=1e-05 --mixed_precision="fp16"  --max_grad_norm=1 --lr_scheduler="constant" --lr_warmup_steps=0  --output_dir="finetuning" : your professor’s suggestion was to train inpaint model with the provided script that’s online but this gave error and didn’t even trained the inpaint model so we used our training script instead
+
+•	accelerate launch ./diffs/examples/text_to_image/train_text_to_image.py --pretrained_model_name_or_path="stabilityai/stable-diffusion-2" --train_data_dir="./trainingdataset/" --use_ema --resolution=512 --center_crop --random_flip  --train_batch_size=1 --gradient_accumulation_steps=4 --gradient_checkpointing --max_train_steps=15000 --learning_rate=1e-05 --mixed_precision="fp16"  --max_grad_norm=1 --lr_scheduler="constant" --lr_warmup_steps=0  --output_dir="finetuning" : to train inpaint model with the provided script that’s online but this gave error and didn’t even trained the inpaint model so we used our training script instead
+
 •	train_text_to_image_inpaintmodel.py : script we created to train fine tune the inpaint model without dreambooth or LoRA
+
 •	accelerate launch ./diffs/examples/text_to_image/train_text_to_image_inpaintmodel.py --pretrained_model_name_or_path="stabilityai/stable-diffusion-2-inpainting" --train_data_dir="./trainingdataset/" --use_ema --resolution=512 --center_crop --random_flip --train_batch_size=1 --gradient_accumulation_steps=4 --gradient_checkpointing --max_train_steps=15000 --learning_rate=1e-05 --mixed_precision="fp16" --max_grad_norm=1 --lr_scheduler="constant" --lr_warmup_steps=0 --output_dir="finetuning2" --instance_data_dir="./trainingdataset/" --cache_dir="./kkk" : training the sd inpaint model without dreamboth or LoRA training procedure using the script we created
+
 •	testfinetunedsdoutpaint.py : testing the trained fine tuned sd inpaint model using custom prompts from txt file with “front right” keyword appended to each prompt
+
 •	driveuploaderfinetunedoutpaint.py : uploading results for fine tuned sd inpaint model with normal prompts from txt file
+
 •	driveuploaderfinetunedoutpaint2.py : uploading results for fine tuned sd inpaint model with “front right” keyword appended to each prompt
+
 •	driveuploaderfinetunedoutpaint3.py :  uploading results for fine tuned sd inpaint model with “front right” keyword appended to each prompt and negative prompts to reduce cartoonish behavior which actually produced good enough results
+
 •	testfinetunedsdoutpaintclipcaptioned.py : for the next test using our fine tuned sd inpaint model we replace our txt file prompts with clip produced automatic prompts but results degraded with our hypothesis being that clip captions are somehow long and creating hallucinatory effect and confusion for the model
+
 •	driveuploaderfinetunedoutpaintclip.py : uploading the results from testfinetunedsdoutpaintclipcaptioned.py output to google drive
+
 •	testfinetunedsdoutpaintclipcaptionedwithdiscarding.py : here we firstly kept the clip captioner and tested our new discarding algorithm which I described in our chat as follows:
 for discontinuity i first converted image to grayscale
 then took sum of all columns to get pixel sum intensities across the width of the image
@@ -97,7 +109,11 @@ prompt: "street view scenery, buildings, plants and trees, pedestrians, front ri
 negative prompt: "3d, cartoon, animated, distorted, unrealistic, disfigured, drawing, painting"
 so for this prompt combination created 10 images with suffix new in "clipcaptionedinpaintfinetunedwithdiscarding2" folder
 this gave the best results of all the experiments we have completed
+
 •	driveuploaderfinetunedoutpaintclipdiscarded.py : we uploaded the results from last part onto the google drive
+
 •	maskrcnninpaintfinetuned.py : as we have used maskrcnn with segment anything model we were getting part masks covering the object and we needed one mask per object not multiple so we fixed that by simply using which masks are inside some masks or 99% area of mask is inside the bigger mask or not and then we merged them to get good results finally
+
 •	foldermaker2.py : makes empty folders in google drive to upload masks and masked images results from maskrcnninpaintfinetuned.py results
+
 •	uploadersammaskrcnn2.py : uploading masks and masked images to empty folders in google drive to upload masks and masked images results from maskrcnninpaintfinetuned.py results
