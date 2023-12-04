@@ -89,8 +89,9 @@ now this change in intensity is what we find and match against a threshold
 if threshold is weak then there will be a lot of false positives
 if threshold is very strong we will be stuck in generation to get a good image for a long time
 that's what we fixed last time with a threshold that is a good compromise between both
-
  
+ ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/fa74eed0-0778-49fc-b1f5-2b5f0b9b3828)
+
 Then we later removed the clip captions with this I mentioned in the chat:
 prompt: "street view scenery, buildings, plants and trees, pedestrians, front right"
 negative prompt: "3d, cartoon, animated, distorted, unrealistic, disfigured, drawing, painting"
