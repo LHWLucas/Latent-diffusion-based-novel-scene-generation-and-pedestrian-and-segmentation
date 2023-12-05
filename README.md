@@ -73,8 +73,10 @@ Scripts on University Server/Cluster - Here outline each key scripts I created a
  ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/fa74eed0-0778-49fc-b1f5-2b5f0b9b3828)
 
 prompt: "street view scenery, buildings, plants and trees, pedestrians, front right"
+
 negative prompt: "3d, cartoon, animated, distorted, unrealistic, disfigured, drawing, painting"
-so for this prompt combination created 10 images with suffix new in "clipcaptionedinpaintfinetunedwithdiscarding2" folder
-this gave the best results of all the experiments we have completed
+
+for this prompt combination created 10 images with suffix new in "clipcaptionedinpaintfinetunedwithdiscarding2" folder in server
+this gave the best results of all the experiments
 
 •	maskrcnninpaintfinetuned.py : as we needed one mask per object not multiple.
