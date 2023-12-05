@@ -39,13 +39,9 @@ We used the dreambooth training procedure to train inpaint SD model on waymo dat
 
 •	maskrcnndreambooth.py : tried SAM (segment anything model) in conjunction with maskrcnn model to get crispier and visually appealing masks by keeping only those good clean masks from sam model which are intersecting the maskrcnn model’s masks by more than 90% pixel area wise ensuring we only keep those masks of pedestrians and vehicles which maskrcnn model was trained to recognise 
 
-•	foldermaker.py : creating empty folders for uploading selected masks images and masks in the google drive
-
-•	uploadersammaskrcnn.py : uploading masked images and masks from maskrcnndreambooth.py output to empty folders in the google drive
+•	gsutil.docx : gsutil commands for getting the tfrecord datasets from waymo open dataset
 
 •	testbasesdfinetuned.py : outpainting using base sd model and poor man’s outpainting technique as merged model failed but results weren’t good enough
-
-•	driveuploaderfinetuned.py : uploading images to the google drive for base sd poor man’s output results
 
 •	accelerate launch ./diffs/examples/text_to_image/train_text_to_image.py --pretrained_model_name_or_path="stabilityai/stable-diffusion-2" --train_data_dir="./trainingdataset/" --use_ema --resolution=512 --center_crop --random_flip  --train_batch_size=1 --gradient_accumulation_steps=4 --gradient_checkpointing --max_train_steps=15000 --learning_rate=1e-05 --mixed_precision="fp16"  --max_grad_norm=1 --lr_scheduler="constant" --lr_warmup_steps=0  --output_dir="finetuning" : to train inpaint model with the provided script that’s online but this gave error and didn’t even trained the inpaint model so we used our training script instead
 
