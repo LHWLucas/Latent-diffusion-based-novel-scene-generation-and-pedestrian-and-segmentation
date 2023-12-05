@@ -5,8 +5,11 @@ https://colab.research.google.com/drive/1pR2BD0CH-pzen7yRJr2-GLrC_LwPJoH9?usp=sh
 
 Objective: here the objective was to segment-predict the pedestrians/ people and vehicles in the right view given an image for the front view
 
+![img](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/cd64af55-50d2-4271-b55f-1a33d57ba10b)
 ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/5a514172-f2c7-45f2-92b7-3d56ca56ea58)
+
 ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/0b5a1bd7-596c-43fb-af67-b08fe1c860ee)
+
 ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/3e897e2d-a5dd-422d-b30b-b41d90a403c8)
 
 
