@@ -1,9 +1,10 @@
 # latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation
 
 WAYMO DATASET WITH STABLE DIFFUSION AND MASKRCNN
+early jupyter notebook on collab
 https://colab.research.google.com/drive/1pR2BD0CH-pzen7yRJr2-GLrC_LwPJoH9?usp=sharing
 
-Objective: here the objective was to segment-predict the pedestrians/ people and vehicles in the right view given an image for the front view
+Objective: To segment-predict the pedestrians/ people and vehicles in the right view given an image for the front view
 
 example 1 with stable diffusion outpainted right side:
 ![img](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/c79cc8a9-c37b-438c-b5e5-0e8a4f896756)
