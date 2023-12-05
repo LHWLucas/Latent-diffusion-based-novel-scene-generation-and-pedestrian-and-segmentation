@@ -5,21 +5,21 @@ https://colab.research.google.com/drive/1pR2BD0CH-pzen7yRJr2-GLrC_LwPJoH9?usp=sh
 
 Objective: here the objective was to segment-predict the pedestrians/ people and vehicles in the right view given an image for the front view
 
-example 1:
+example 1 with stable diffusion outpainted right side:
 ![img](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/c79cc8a9-c37b-438c-b5e5-0e8a4f896756)
 segmented example 1:
 ![maskedimg](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/4d62caf3-a88b-49fa-812b-72a2395402fe)
 mask stitched example 1:
 ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/5a514172-f2c7-45f2-92b7-3d56ca56ea58)
 
-example 2:
+example 2 with stable diffusion outpainted right side:
 ![img](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/cd64af55-50d2-4271-b55f-1a33d57ba10b)
 segmented example 2:
 ![maskedimg](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/c662ef0b-f7b5-4611-9848-68cb3a04726c)
 mask stitched example 2:
 ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/0b5a1bd7-596c-43fb-af67-b08fe1c860ee)
 
-example 3:
+example 3 with stable diffusion outpainted right side:
 ![img](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/72dd569f-2d20-4220-8ab6-8c36a3fdf6f5)
 segmented example 3:
 ![maskedimg](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/fc8dbe8f-de29-4111-bc70-6592c9ac89ef)
