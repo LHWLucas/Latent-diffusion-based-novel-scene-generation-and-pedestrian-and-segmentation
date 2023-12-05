@@ -15,13 +15,9 @@ We used the dreambooth training procedure to train inpaint SD model on waymo dat
 
 •	client_secret_95146630750-sclh21du0rji3814t4hig6ieuulagq4i.apps.googleusercontent.com.json : json file created after authenticating and creating a web service for app on localhost on google cloud dev for uploading and downloading on files directly to and from server and google drive.
 
-•	driveuploader.py : uploading the stitched dataset for checking the quality of blending to google drive
-
 •	settings.yaml : yaml for authorization settings for the google drive account using google cloud backend to work with pydrive2 library
 
 •	credentials.json : json file with local authorization settings for pydrive2 and google drive
-
-•	drivedownloader.py : downloading training dataset selected from the stitched data with good stitching without seams and borders from google drive
 
 •	accelerate launch ./diffs/examples/research_projects/dreambooth_inpaint/train_dreambooth_inpaint.py  --pretrained_model_name_or_path="stabilityai/stable-diffusion-2-inpainting"   --instance_data_dir="./training_imgs/"  --output_dir="./chkpt_outpaint3/" --instance_prompt="photo of a waymodrivscene driving scene"  --resolution=512  --train_batch_size=4  --gradient_accumulation_steps=1 --learning_rate=5e-6  --lr_scheduler="constant" --lr_warmup_steps=0 --max_train_steps=3000 : training inpaint model on first 200 tfrecord images that were selected after stitching
 
@@ -31,39 +27,15 @@ We used the dreambooth training procedure to train inpaint SD model on waymo dat
 
 •	blender_outpaint_testing.py : creating blended stitched dataset from the testing dataset
 
-•	driveuploader500.py : uploading results to google drive for output results from training the inpaint model for 500 epochs
-
-•	driveuploader1000.py : uploading results to google drive for output results from training the inpaint model for 1000 epochs
-
-•	driveuploader1500.py : uploading results to google drive for output results from training the inpaint model for 1500 epochs
-
-•	driveuploader2000.py : uploading results to google drive for output results from training the inpaint model for 2000 epochs
-
-•	driveuploader2500.py : uploading results to google drive for output results from training the inpaint model for 2500 epochs
-
-•	driveuploader3000.py : uploading results to google drive for output results from training the inpaint model for 3000 epochs
-
 •	testbasesd.py : testing base inpaint sd model without any fine tuning on outpainting task but results weren’t satisfactory
 
 •	imagecaptioner.py : we added manual prompts by loading from a text file with base inpaint sd model to see changes in results but still results weren’t visually appealing but a slight improvement
-
-•	driveuploader2.py : uploading results from using text prompts from file to the google drive
 
 •	clipcaptioner.py : we used clip model for generating prompts from input images for both front and front right images and generate these prompts automatically and save it as a image, prompt pair for both front and front right images separately
 
 •	metadatcreator.py : merges the front and front right csv files with adding front or front right as keyword to each promt depending on the image is from front or front right csv
 
-•	filecopierfr.py : copying image files from front right images to a training dataset directory
-
-•	filecopierf.py : copying image files from front images to a training dataset directory and merging the front and front right images to create a merged dataset for training
-
-•	driveuploaderckpt.py : we quickly trained a base sd model with waymo dataset and then uploading this fine tuned base sd model as we wanted to try the next idea of merging this base sd model with the inapint model which we do online using google colab and automatic1111 model merging
-
-•	drivedownloaderckpt.py : downloading the merged ckpt for merged inpaint sd model from google drive that we saved from automatic1111 checkpoint merging  procedure
-
 •	testmerged.py : we tested the merged model for outpainting but got the worst results as outpainted region was just random noise
-
-•	driveuploadermerged.py : uploading the results for merged model to google drive
 
 •	maskrcnndreambooth.py : tried SAM (segment anything model) in conjunction with maskrcnn model to get crispier and visually appealing masks by keeping only those good clean masks from sam model which are intersecting the maskrcnn model’s masks by more than 90% pixel area wise ensuring we only keep those masks of pedestrians and vehicles which maskrcnn model was trained to recognise 
 
@@ -83,15 +55,7 @@ We used the dreambooth training procedure to train inpaint SD model on waymo dat
 
 •	testfinetunedsdoutpaint.py : testing the trained fine tuned sd inpaint model using custom prompts from txt file with “front right” keyword appended to each prompt
 
-•	driveuploaderfinetunedoutpaint.py : uploading results for fine tuned sd inpaint model with normal prompts from txt file
-
-•	driveuploaderfinetunedoutpaint2.py : uploading results for fine tuned sd inpaint model with “front right” keyword appended to each prompt
-
-•	driveuploaderfinetunedoutpaint3.py :  uploading results for fine tuned sd inpaint model with “front right” keyword appended to each prompt and negative prompts to reduce cartoonish behavior which actually produced good enough results
-
 •	testfinetunedsdoutpaintclipcaptioned.py : for the next test using our fine tuned sd inpaint model we replace our txt file prompts with clip produced automatic prompts but results degraded with our hypothesis being that clip captions are somehow long and creating hallucinatory effect and confusion for the model
-
-•	driveuploaderfinetunedoutpaintclip.py : uploading the results from testfinetunedsdoutpaintclipcaptioned.py output to google drive
 
 •	testfinetunedsdoutpaintclipcaptionedwithdiscarding.py : here we firstly kept the clip captioner and tested our new discarding algorithm which I described in our chat as follows:
 for discontinuity i first converted image to grayscale
@@ -111,10 +75,4 @@ negative prompt: "3d, cartoon, animated, distorted, unrealistic, disfigured, dra
 so for this prompt combination created 10 images with suffix new in "clipcaptionedinpaintfinetunedwithdiscarding2" folder
 this gave the best results of all the experiments we have completed
 
-•	driveuploaderfinetunedoutpaintclipdiscarded.py : we uploaded the results from last part onto the google drive
-
 •	maskrcnninpaintfinetuned.py : as we have used maskrcnn with segment anything model we were getting part masks covering the object and we needed one mask per object not multiple so we fixed that by simply using which masks are inside some masks or 99% area of mask is inside the bigger mask or not and then we merged them to get good results finally
-
-•	foldermaker2.py : makes empty folders in google drive to upload masks and masked images results from maskrcnninpaintfinetuned.py results
-
-•	uploadersammaskrcnn2.py : uploading masks and masked images to empty folders in google drive to upload masks and masked images results from maskrcnninpaintfinetuned.py results
