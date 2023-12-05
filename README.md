@@ -20,9 +20,9 @@ mask stitched example 2:
 ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/0b5a1bd7-596c-43fb-af67-b08fe1c860ee)
 
 example 3:
-
+![img](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/72dd569f-2d20-4220-8ab6-8c36a3fdf6f5)
 segmented example 3:
-
+![maskedimg](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/fc8dbe8f-de29-4111-bc70-6592c9ac89ef)
 mask stitched example 3:
 ![image](https://github.com/LHWLucas/latent-diffusion-based-novel-scene-generation-and-pedestrian-and-vehicle-segmentation/assets/89898376/3e897e2d-a5dd-422d-b30b-b41d90a403c8)
 
